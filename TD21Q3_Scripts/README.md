@@ -25,3 +25,13 @@ HarmonyPremium -env Env_01 -job Pose_copier_test -scene PC_01 -user chrisc -batc
 
 if no Harmony 20 bin environment variable has been set, replace `HarmonyPremium` with
 `C:\Program Files (x86)\Toon Boom Animation\Toon Boom Harmony 20 Premium\win64\bin`
+
+## image as tooltip
+
+```html
+<img alt="image tooltip" src="path to image file" >
+```
+```html
+<img alt="C:\Github\ToonTools\TD_Course_2021_Q3\images\image tooltip.JPG" src="C:\Github\ToonTools\TD_Course_2021_Q3\images\image tooltip.JPG" >
+```
+
