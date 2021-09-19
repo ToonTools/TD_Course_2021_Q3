@@ -34,4 +34,4 @@ if no Harmony 20 bin environment variable has been set, replace `HarmonyPremium`
 ```html
 <img alt="C:\Github\ToonTools\TD_Course_2021_Q3\images\image tooltip.JPG" src="C:\Github\ToonTools\TD_Course_2021_Q3\images\image tooltip.JPG" >
 ```
-
+can be any web image

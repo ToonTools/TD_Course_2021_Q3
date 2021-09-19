@@ -19,9 +19,11 @@ Some of the services that could be useful to use from command line are: ( the `-
 * `utransform` rasterise image
 <br> e.g.
 convert a .tvg file to a .png file
+
 ``` python
-utransform -outformat PNG4 -outfile "C:\Users\chris\Desktop\TEMP\sketchOut.png"  "C:\Users\chris\Desktop\TEMP\HAR_004_sketch_sketch-1.tvg"
+utransform -outformat PNG4 -outfile "C:\Users\chris\Desktop\TEMP\triangleOut.png"  "C:\Users\chris\Documents\ToonBoom_Projects\TD Course 2021 Q3\TD21Q3_Demo_Local\Day_4\scripting_day_1\script_locations\elements\triangle\triangle-1.tvg"
 ```
+
 * `pix2vec` vectorise image
 * `setdef` Set render environments and machines
 * `ControlCenter` Control Center[[Control Center class reference](https://docs.toonboom.com/help/harmony-20/scripting/dbscript/classControlCentre.html)] [[Control Center scripting introduction](https://docs.toonboom.com/help/harmony-20/scripting/dbscript/index.html)]
