@@ -8,19 +8,20 @@ C:\Program Files (x86)\Notepad++\notepad++.exe
 [creating a dialog tutorial](https://docs.toonboom.com/help/harmony-20/scripting/script/Dialog.html])
 
 
-
-
 ## Harmony Standalone
 Harmony<Edition> PathToScene/Scene.xstage -batch -compile PathToScript/Script.js
 
-```HarmonyPremium "C:\Users\chris\Documents\ToonBoom_Projects\TD Course 2021 Q3\TD21Q3_Demo_Local\Day_4\scripting_day_1\script_locations\script_locations.xstage" -batch -compile "C:\Github\ToonTools\TD_Course_2021_Q3\TD21Q3_Scripts\TD21Q3_04-2_numberOfNodes.js"```
+``` javascript
+HarmonyPremium "C:\Users\chris\Documents\ToonBoom_Projects\TD Course 2021 Q3\TD21Q3_Demo_Local\Day_4\scripting_day_1\script_locations\script_locations.xstage" -batch -compile "C:\Github\ToonTools\TD_Course_2021_Q3\TD21Q3_Scripts\TD21Q3_04-2_numberOfNodes.js"
+```
 
 
 ## Harmony Server
 Harmony<Edition> -env EnvironmentName -job JobName -scene SceneName -user UserName -batch -compile PathToScript/Script.js
 
+```javascript
+HarmonyPremium -env Env_01 -job Pose_copier_test -scene PC_01 -user chrisc -batch -compile "C:\Github\ToonTools\TD_Course_2021_Q3\TD21Q3_Scripts\TD21Q3_04-2_numberOfNodes.js"
 ```
 
-
-```
-
+if no Harmony 20 bin environment variable has been set, replace `HarmonyPremium` with
+`C:\Program Files (x86)\Toon Boom Animation\Toon Boom Harmony 20 Premium\win64\bin`
