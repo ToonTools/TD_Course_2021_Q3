@@ -1,9 +1,9 @@
-## command prompt for Harmony
+# Using Command Prompt with Harmony
 
-`HarmonyPremium -help` and `ControlCenter -help` to get intitial help and check paths are working
-
-## Using Command Prompt
-You dont HAVE to set up your environment variables before doing this, but its easiest if you set your Harmony Path to an environment variable. This way you can launch command prompt from any context and the Harmony processes will be available.
+## set Harmony Binaries to Environment Variables
+* [Adding Harmony Binaries to the $PATH Environment Variable](https://docs.toonboom.com/help/harmony-20/installation/installation/basic/mac/add-to-path-mac.html)
+  
+Once you have set the harmony binary files to the $PATH environment, you can access harmony binaries (executable files) from any directory on the machine, this makes it easier to use the command prompt as you now dont need to navigate the path `C:\Program Files (x86)\Toon Boom Animation\Toon Boom Harmony 20 Premium\win64\bin` to launch the processes
 
 Launch command prompt by:
 * selecting the windows icon on the bottom left of yoru desktop then typing "cmd" then the enter key.
@@ -11,33 +11,45 @@ Launch command prompt by:
 * typing "cmd" into the directory path 
 ![](../images/directory%20path%20menu.png)
 
+### Test the $PATH is set correctly 
 
+`HarmonyPremium -help` and `ControlCenter -help` to get intitial help and check paths are working
+
+---
 ## Commands available
 Some of the services that could be useful to use from command line are: ( the `-help` flag will display all available flags for that command )
 
 * `harmonyPremium` Harmony launcher
-* `utransform` rasterise image
-<br> e.g.
-convert a .tvg file to a .png file
-
-``` python
-utransform -outformat PNG4 -outfile "C:\Users\chris\Desktop\TEMP\triangleOut.png"  "C:\Users\chris\Documents\ToonBoom_Projects\TD Course 2021 Q3\TD21Q3_Demo_Local\Day_4\scripting_day_1\script_locations\elements\triangle\triangle-1.tvg"
-```
-
-* `pix2vec` vectorise image
+* `utransform` rasterise image [ *.png / *.jpg -> *.tvg ]
+* `pix2vec` vectorise image [ *.tvg -> *.png / *.jpg ]
 * `setdef` Set render environments and machines
 * `ControlCenter` Control Center[[Control Center class reference](https://docs.toonboom.com/help/harmony-20/scripting/dbscript/classControlCentre.html)] [[Control Center scripting introduction](https://docs.toonboom.com/help/harmony-20/scripting/dbscript/index.html)]
-* `ControlCenter -help` 
+
+---
+## Examples
+* pix2vc
+.tvg -> .png -> .tvg
+``` python
+Pix2vec -infile "C:\Users\chris\Desktop\TEMP\triangleOut.png" -outfile "C:\Users\chris\Desktop\TEMP\triangleOut_vector.tvg"
+```
+
+* utransform 
+.png -> .tvg and increasing the scale *2 ( will not change the total image resolution)
+``` python
+utransform -scale 2 -outformat PNG4 -outfile "C:\Users\chris\Desktop\TEMP\triangleOut.png"  "C:\Users\chris\Documents\ToonBoom_Projects\TD Course 2021 Q3\TD21Q3_Demo_Local\Day_4\scripting_day_1\script_locations\elements\triangle\triangle-1.tvg"
+```
+* control center
 ```python
 Controlcenter -runScript <script_file> -user <user_name>
 
 ControlCenter -runScript "C:\Users\chris\Documents\ToonBoom_Projects\TD Course 2021 Q2\Demo_Files\D3\ccScript_demo.js" -user usabatch
 ```
 
+## Further Control Centre scripting
 
-
-## You can use a helper function like this to print the output message to your context
-This will not work on ControlCenter -runStageScript commands, you will either need to figure out what the message output fommand for that is, or write the inforamtion to a text log file somwehere. See [[TD_6-2_makeAndRead_textFile.js](https://github.com/ToonTools/TD_Course_2021_Q2/blob/main/TD_6-2_makeAndRead_textFile.js)] for help on that.
+* message output
+  
+When using `controlcenter -runscript` the `MessageLog.trace` class will not print to console, you need to use `System.println` instead. You can use a function like this if you are creating a function that will be being run from Control Center as well as within a Harmony scene directly.
 ``` javascript
 function consoleWrite(message){
 	MessageLog.trace(message)
