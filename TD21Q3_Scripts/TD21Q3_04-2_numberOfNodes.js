@@ -6,5 +6,6 @@ function numberOfNodes(){
 
 	MessageLog.trace("\n\n" + message + "\n\n")
 	//ControlCentre.printToConsole(message)
+	//System.println(message)
 } 
 
