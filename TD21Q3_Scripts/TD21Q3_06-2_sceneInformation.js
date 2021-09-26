@@ -29,22 +29,18 @@ function getSelectionInformation(){
 	write(outputMessage)
 	
 	// give me a list of all nodes selected
-	var myNodeSelection = selection.numberOfNodesSelected()
-	if (myNodeSelection <= 0){
+	var myNodeSelection_total = selection.numberOfNodesSelected()
+	if (myNodeSelection_total <= 0){
 		// if none are selected then list all nodes in the scene
 		selection.selectAll()
 	}
 	
+	var myNodeSelection = selection.selectedNodes()
 	
-	
-		
+	for( n in myNodeSelection ){
+		write( "Node "+ n + " = " + myNodeSelection[n])
+	}
 
-	
-	
-	
-	
-	
-	
 	
 }
 
