@@ -35,16 +35,27 @@ function textFile_write(){
 function textFile_read(){
 	MessageLog.trace("textFile_read button pressed")
 	
+	// check if the file exists
 	var myTextFile = new File(fileCompletePath)
 	if(!myTextFile.exists){
 		MessageBox.info("File does not exists :" + myTextFile )
 		return
 	}
 	
+	// open the file and read its content
 	myTextFile.open(FileAccess.ReadOnly)
 	var content = myTextFile.read()
-	var message = fileCompletePath + "content = \n " + content +" \n"
 	
-	MessageLog.trace(message)
+	// create a dialog box that will display our information
+	var fileRead_dialog 	= new Dialog()
+	fileRead_dialog.title 	= fileCompletePath
+	
+	// add the content of the text file to a label
+	fileRead_content 		= new Label
+	fileRead_content.text 	= content
+	
+	// add that label to the dialog box
+	fileRead_dialog.add(fileRead_content)
+	fileRead_dialog.exec()
 	
 }
