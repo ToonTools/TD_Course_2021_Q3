@@ -39,26 +39,25 @@ function getSelectionInformation(){
 		selection.selectAll()
 	}
 	
-	var myNodeSelection = selection.selectedNodes()
+	var myNodeSelection 	= selection.selectedNodes()
+	var writeCounter 		= 0
+	
+	
 	
 	for( n in myNodeSelection ){
 		
 		var thisNode		= myNodeSelection[n]
 		var thisNode_type 	= node.type(thisNode)
 		
-		write( "Node "+ n + " = " + myNodeSelection[n] + " type: " + node.type(thisNode)  )
-		
 		for ( t in nodeTypesToShow){
 			var thisType = nodeTypesToShow[t]
 			
 			if( thisNode_type == thisType ){
-				write("this node is a write type of node!!!! ")
+				writeCounter += 1
+				write( "Write Node ["+ writeCounter + "] " + myNodeSelection[n] + " [" + node.type(thisNode) +"]" )
+				
 			}
 		}
-		
-		
 	}
-
-	
 }
 
