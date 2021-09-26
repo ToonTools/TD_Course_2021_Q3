@@ -6,6 +6,7 @@ output: text information in the message log describing elements of the scene
 
 function write(message){
 	MessageLog.trace(message)
+	System.println(message)
 }
 
 function getSelectionInformation(){
@@ -21,7 +22,7 @@ function getSelectionInformation(){
 	var scene_stop_f	= scene.getStopFrame() 
 	var scene_length 	= scene_stop_f - scene_start_f
 	
-	var outputMessage   = "Scene Information:"
+	var outputMessage   = "\n\nScene Information:"
 
 	// give me information on the current scene
 	//outputMessage += ("\nEnvironment  = " + env_path)
@@ -59,5 +60,12 @@ function getSelectionInformation(){
 			}
 		}
 	}
+	
+	write("\n\n")
 }
+
+getSelectionInformation()
+
+
+// TODO output the Movie & image sequence export path for each write node.
 
