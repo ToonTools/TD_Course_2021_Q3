@@ -18,10 +18,21 @@ function textFile_write(){
 		myTextFile.close()
 	}
 	// we will assume it already exists
-	var message = "my test message"
+	
+	var message = "placeholder message"
+
 	// then ask user if they want to add to it
+	var fileWrite_dialog 	= new Dialog()
+	fileWrite_dialog.title 	= "Please write your new like to the text file here"
 	
 	// give user a dialog box in which they can input a message
+	var userInput 			= new LineEdit()
+	userInput.label 		= "Enter new line here: "
+	fileWrite_dialog.add(userInput)
+	
+	if( fileWrite_dialog.exec()){
+		message = userInput.text
+	}	
 	
 	// write that message to the text file
 	myTextFile.open(FileAccess.Append)
@@ -58,4 +69,5 @@ function textFile_read(){
 	fileRead_dialog.add(fileRead_content)
 	fileRead_dialog.exec()
 	
+	MessageLog.trace("textFile_read button executed and displayed text file content")
 }
