@@ -18,20 +18,16 @@ function textFile_write(){
 		myTextFile.close()
 	}
 	// we will assume it already exists
-	
-	
-	MessageLog.trace(fileCompletePath)
-	
-	
-	
-	
-	
+	var message = "my test message"
 	// then ask user if they want to add to it
 	
 	// give user a dialog box in which they can input a message
 	
 	// write that message to the text file
-	
+	myTextFile.open(FileAccess.Append)
+	myTextFile.writeLine(message)
+	myTextFile.close()
+	MessageLog.trace("'" + message +"' was written to the text file  ")
 	
 }
 
