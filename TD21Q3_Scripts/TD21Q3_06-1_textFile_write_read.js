@@ -12,11 +12,10 @@ function textFile_write(){
 	
 	// check if the text file already exists
 	// if it does not exist then create it
-	if(myTextFile.exists){
-		MessageLog.trace("the file exists")
-	}
-	else{
-		MessageLog.trace("the file does NOT exists")
+	if(!myTextFile.exists){
+		MessageLog.trace("file does not exist so I will make it")
+		myTextFile.open(FileAccess.WriteOnly)
+		myTextFile.close()
 	}
 	// we will assume it already exists
 	
