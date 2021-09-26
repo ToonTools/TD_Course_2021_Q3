@@ -34,4 +34,17 @@ function textFile_write(){
 // read text file
 function textFile_read(){
 	MessageLog.trace("textFile_read button pressed")
+	
+	var myTextFile = new File(fileCompletePath)
+	if(!myTextFile.exists){
+		MessageBox.info("File does not exists :" + myTextFile )
+		return
+	}
+	
+	myTextFile.open(FileAccess.ReadOnly)
+	var content = myTextFile.read()
+	var message = fileCompletePath + "content = \n " + content +" \n"
+	
+	MessageLog.trace(message)
+	
 }
