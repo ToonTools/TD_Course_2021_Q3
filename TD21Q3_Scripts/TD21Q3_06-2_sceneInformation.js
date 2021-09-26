@@ -11,9 +11,12 @@ function write(message){
 function getSelectionInformation(){
 	MessageLog.trace("getSelectionInformation() has been clicked")
 	
+	var nodeTypesToShow = ["WRITE", "MultiLayerWrite"]
+	
 	var env_path 		= scene.currentEnvironmentPath() 
 	var proj_path 		= scene.currentProjectPath() 
 	var proj_temp_path 	= scene.tempProjectPathRemapped() 
+	var scene_name		= scene.currentScene()
 	var scene_start_f	= scene.getStartFrame() 
 	var scene_stop_f	= scene.getStopFrame() 
 	var scene_length 	= scene_stop_f - scene_start_f
@@ -21,10 +24,11 @@ function getSelectionInformation(){
 	var outputMessage   = "Scene Information:"
 
 	// give me information on the current scene
-	outputMessage += ("\nEnvironment  = " + env_path)
-	outputMessage += ("\nProject          = " + proj_path)
-	outputMessage += ("\nProject TEMP = " + proj_temp_path)
-	outputMessage += ("\nTotal frames  = " + scene_length +" ["+ scene_start_f + " -> " + scene_stop_f + "]")
+	//outputMessage += ("\nEnvironment  = " + env_path)
+	//outputMessage += ("\nProject          = " + proj_path)
+	//outputMessage += ("\nProject TEMP = " + proj_temp_path)
+	outputMessage += scene.currentScene()
+	outputMessage += ("\t" + scene_length +"f ["+ scene_start_f + " -> " + scene_stop_f + "]")
 	
 	write(outputMessage)
 	
@@ -38,7 +42,21 @@ function getSelectionInformation(){
 	var myNodeSelection = selection.selectedNodes()
 	
 	for( n in myNodeSelection ){
-		write( "Node "+ n + " = " + myNodeSelection[n])
+		
+		var thisNode		= myNodeSelection[n]
+		var thisNode_type 	= node.type(thisNode)
+		
+		write( "Node "+ n + " = " + myNodeSelection[n] + " type: " + node.type(thisNode)  )
+		
+		for ( t in nodeTypesToShow){
+			var thisType = nodeTypesToShow[t]
+			
+			if( thisNode_type == thisType ){
+				write("this node is a write type of node!!!! ")
+			}
+		}
+		
+		
 	}
 
 	
