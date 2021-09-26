@@ -1,3 +1,13 @@
+/*
+Input: just press the buttons, no harmony scene requirements
+Output: a text file on the users desktop
+
+How to use: launch each of the functions to write and then read information from .txt file on your user/deskop location
+
+*/
+
+
+
 // set the name of the text file
 var userName 			= about.getUserName()
 var myDesktopPath 		= "C:\\Users\\" + userName + "\\Desktop\\"
@@ -19,7 +29,7 @@ function textFile_write(){
 	}
 	// we will assume it already exists
 	
-	var message = "placeholder message"
+	var message = ""
 
 	// then ask user if they want to add to it
 	var fileWrite_dialog 	= new Dialog()
