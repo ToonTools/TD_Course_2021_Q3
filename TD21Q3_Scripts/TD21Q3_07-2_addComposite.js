@@ -22,9 +22,17 @@ function addComposite(){
 	var node_y		= 0 
 	var node_z		= 0
 
-	
+
 	var newCompNode = node.add( parentGroup , nodeName, nodeType , node_x , node_y , node_z )
-	
-	
 	MessageLog.trace("--- addComposite() built : " + newCompNode)
+	
+	
+	// link composite node to initial selection
+	node.link(selNode, 0, newCompNode, 0 , true, true )
+	
+	// TODO add popup allowing user to choose which type of composite 
+	// OR
+	// Shift + click adds Bitmap
+	// click adds passthroug
+	
 }
