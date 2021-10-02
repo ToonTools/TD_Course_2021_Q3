@@ -31,11 +31,34 @@ function getNodeAttributes(){
 			var myNode_attr_name 		= myNode_attrNames[n]
 			var myNode_attr_key 		= myNode_attrKeys[n]
 			var myNode_attr_value 	= node.getTextAttr(myNode, frame, myNode_attr_key)
-			MessageLog.trace("\t" + myNode_attr_key + " (" + myNode_attr_name + ")\n\t\t= " +  myNode_attr_value +"\n" )
+			var myMessage = ""
+			myMessage += ("\t" + myNode_attr_key + " (" + myNode_attr_name + ")")
 			
+
 			if( myNode_attr_value == ""){
-				MessageLog.trace("\t\t\t ERROR, no value found")
+				var myNode_attr_key_x 		= myNode_attr_key + ".x"
+				var myNode_attr_key_x_value = node.getTextAttr(myNode,frame,myNode_attr_key_x)
+				if(myNode_attr_key_x_value != ""){
+					myMessage += ('\n\t  [' + myNode_attr_key_x + '] = ' + myNode_attr_key_x_value)
+				}
+				var myNode_attr_key_y 		= myNode_attr_key + ".y"
+				var myNode_attr_key_y_value = node.getTextAttr(myNode,frame,myNode_attr_key_y)
+				if(myNode_attr_key_y_value != ""){
+					myMessage += ('\n\t  [' + myNode_attr_key_y + '] = ' + myNode_attr_key_y_value)
+				}
+				var myNode_attr_key_z 		= myNode_attr_key + ".z"
+				var myNode_attr_key_z_value = node.getTextAttr(myNode,frame,myNode_attr_key_z)
+				if(myNode_attr_key_z_value != ""){
+					myMessage += ('\n\t  [' + myNode_attr_key_z + '] = ' + myNode_attr_key_z_value)
+				}
+
 			}
+			else{
+				myMessage += ("\n\t= " +  myNode_attr_value +"\n" )
+			}
+
+			
+			MessageLog.trace(myMessage)
 			
 		}
 
