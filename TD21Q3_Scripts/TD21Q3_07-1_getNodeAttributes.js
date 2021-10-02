@@ -28,9 +28,14 @@ function getNodeAttributes(){
 		
 		
 		for( n in myNode_attrNames ){
-			var myNode_attr 		= myNode_attrKeys[n]
-			var myNode_attr_value 	= node.getTextAttr(myNode, frame, myNode_attr)
-			MessageLog.trace("\t" + myNode_attr + " : " + myNode_attr_value )
+			var myNode_attr_name 		= myNode_attrNames[n]
+			var myNode_attr_key 		= myNode_attrKeys[n]
+			var myNode_attr_value 	= node.getTextAttr(myNode, frame, myNode_attr_key)
+			MessageLog.trace("\t" + myNode_attr_key + " (" + myNode_attr_name + ")\n\t\t= " +  myNode_attr_value +"\n" )
+			
+			if( myNode_attr_value == ""){
+				MessageLog.trace("\t\t\t ERROR, no value found")
+			}
 			
 		}
 
