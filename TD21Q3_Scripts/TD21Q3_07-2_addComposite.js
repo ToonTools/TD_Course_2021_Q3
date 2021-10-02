@@ -11,11 +11,19 @@ Note: very minimal validation in this script so there will be many use cases whe
 function addComposite(){
 	MessageLog.trace("--- addComposite() called ---")
 	
+	if( selection.numberOfNodesSelected() <= 0 ){
+		MessageLog.trace(" no nodes are selected so I will stop")
+		return
+	}
+	
+	
 	var selNode			= selection.selectedNode(0)
 	var selNode_name 	= node.getName(selNode)
 	var selNode_x		= node.coordX(selNode)
 	var selNode_y		= node.coordY(selNode)
-
+	
+	
+	
 	
 	// build composite	
 	var parentGroup = "Top"
