@@ -7,6 +7,8 @@ output: text information of all of that nodes attributes and their values
 function getNodeAttributes(){
 	//MessageLog.trace("getNodeAttributes started")
 	
+	var frame				= 1
+	
 	if ( selection.numberOfNodesSelected() > 1 ){
 		MessageLog.trace("you have too many nodes selected, just select one and try again")
 		return
@@ -24,14 +26,14 @@ function getNodeAttributes(){
 		
 		MessageLog.trace("[" + myNode + "] has " + myNode_attrNames.length + " attributes"  )
 		
-		//MessageLog.trace("myNode_attrNames = " + myNode_attrNames)
 		
-		//MessageLog.trace("myNode_attrKeys = " + myNode_attrKeys)
-		
-		
-		
-		
-		
+		for( n in myNode_attrNames ){
+			var myNode_attr 		= myNode_attrKeys[n]
+			var myNode_attr_value 	= node.getTextAttr(myNode, frame, myNode_attr)
+			MessageLog.trace("\t" + myNode_attr + " : " + myNode_attr_value )
+			
+		}
+
 		
 		// check if that node has any attributes
 		
