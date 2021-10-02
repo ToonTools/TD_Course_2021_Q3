@@ -43,7 +43,8 @@ function getSelectionInformation(){
 	var myNodeSelection 	= selection.selectedNodes()
 	var writeCounter 		= 0
 	
-
+	
+	
 	for( n in myNodeSelection ){
 		
 		var thisNode		= myNodeSelection[n]
