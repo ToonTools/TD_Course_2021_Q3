@@ -10,6 +10,7 @@ Note: very minimal validation in this script so there will be many use cases whe
 
 function addComposite(){
 	MessageLog.trace("--- addComposite() called ---")
+	scene.beginUndoRedoAccum("addComposite()")
 	
 	// escapes from this process if no nodes are selected
 	if( selection.numberOfNodesSelected() <= 0 ){
@@ -45,12 +46,17 @@ function addComposite(){
 	// for any nodes selected make sure they can be connected
 	for( n in selection.selectedNodes()){
 		var mySelectedNode = selection.selectedNode(n)
-		node.link(mySelectedNode, 0, newCompNode, 0 , true, true )
-		MessageLog.trace("------ connected to --- " + selNode)
+		var linkOutput = node.link(mySelectedNode, 0, newCompNode, 0 , true, true )
+		if(linkOutput){
+			MessageLog.trace("----- connected to : " + selNode)
+		}
+		else{
+			MessageLog.trace("X X X no connection to : " + selNode)
+		}
 		
 	}
 	
-	
+	scene.endUndoRedoAccum()
 	
 	
 	// TODO add popup allowing user to choose which type of composite 
