@@ -13,13 +13,17 @@ function addComposite(){
 	
 	var selNode			= selection.selectedNode(0)
 	var selNode_name 	= node.getName(selNode)
+	var selNode_x		= node.coordX(selNode)
+	var selNode_y		= node.coordY(selNode)
+
 	
 	// build composite	
 	var parentGroup = "Top"
 	var nodeName 	= selNode_name + "_COMP"
 	var nodeType 	= "COMPOSITE"
-	var node_x		= 0
-	var node_y		= 0 
+	var offset		= 200
+	var node_x		= selNode_x
+	var node_y		= selNode_y + offset
 	var node_z		= 0
 
 
