@@ -24,11 +24,12 @@ function addComposite(){
 
 
 	var newCompNode = node.add( parentGroup , nodeName, nodeType , node_x , node_y , node_z )
-	MessageLog.trace("--- addComposite() built : " + newCompNode)
+	MessageLog.trace("--- built : " + newCompNode)
 	
 	
 	// link composite node to initial selection
 	node.link(selNode, 0, newCompNode, 0 , true, true )
+	MessageLog.trace("------ connected to --- " + selNode)
 	
 	// TODO add popup allowing user to choose which type of composite 
 	// OR
