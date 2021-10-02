@@ -68,3 +68,6 @@ function getNodeAttributes(){
 		// if it does have attributes, then go through each attribute and display its name and its value
 	}
 }
+
+
+//TODO add array to got through all possible attribute children values
