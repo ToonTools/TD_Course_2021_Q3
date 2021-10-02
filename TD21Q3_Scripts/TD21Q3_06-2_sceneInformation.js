@@ -10,7 +10,7 @@ function write(message){
 }
 
 function getSelectionInformation(){
-	MessageLog.trace("getSelectionInformation() has been clicked")
+	//MessageLog.trace("getSelectionInformation() has been clicked")
 	
 	var nodeTypesToShow = ["WRITE", "MultiLayerWrite"]
 	
@@ -22,7 +22,7 @@ function getSelectionInformation(){
 	var scene_stop_f	= scene.getStopFrame() 
 	var scene_length 	= scene_stop_f - scene_start_f
 	
-	var outputMessage   = "\n\nScene Information:"
+	var outputMessage   = "Scene Information:"
 
 	// give me information on the current scene
 	//outputMessage += ("\nEnvironment  = " + env_path)
@@ -43,8 +43,7 @@ function getSelectionInformation(){
 	var myNodeSelection 	= selection.selectedNodes()
 	var writeCounter 		= 0
 	
-	
-	
+
 	for( n in myNodeSelection ){
 		
 		var thisNode		= myNodeSelection[n]
@@ -57,14 +56,22 @@ function getSelectionInformation(){
 				writeCounter += 1
 				write( "Write Node ["+ writeCounter + "] " + myNodeSelection[n] + " [" + node.type(thisNode) +"]" )
 				
+				// we will now get the render path for this write node
+				var thisNode_drawingPath = node.getTextAttr("Top/Write", frame.current(),"drawingName") 
+				var thisNode_moviePath 	= node.getTextAttr("Top/Write", frame.current(),"moviePath") 
+
+				write( "Drawing Path = " + thisNode_drawingPath )
+				write( "Movie Path = " + thisNode_moviePath )
+
 			}
 		}
 	}
+
 	
 	write("\n\n")
 }
 
-getSelectionInformation()
+//getSelectionInformation()
 
 
 // TODO output the Movie & image sequence export path for each write node.
