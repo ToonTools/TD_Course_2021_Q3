@@ -27,6 +27,8 @@ function getNodeAttributes(){
 		
 		MessageLog.trace("myNode_attrKeys = " + myNode_attrKeys)
 		
+		MessageLog.trace("myNode_attrNames length = " + myNode_attrNames.length)
+		MessageLog.trace("myNode_attrKeys length = " + myNode_attrKeys.length)
 		
 		
 		// check if that node has any attributes
