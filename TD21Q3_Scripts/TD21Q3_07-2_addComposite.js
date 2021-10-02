@@ -11,11 +11,11 @@ Note: very minimal validation in this script so there will be many use cases whe
 function addComposite(){
 	MessageLog.trace("--- addComposite() called ---")
 	
+	// escapes from this process if no nodes are selected
 	if( selection.numberOfNodesSelected() <= 0 ){
 		MessageLog.trace(" no nodes are selected so I will stop")
 		return
 	}
-	
 	
 	var selNode			= selection.selectedNode(0)
 	var selNode_name 	= node.getName(selNode)
@@ -40,8 +40,18 @@ function addComposite(){
 	
 	
 	// link composite node to initial selection
-	node.link(selNode, 0, newCompNode, 0 , true, true )
-	MessageLog.trace("------ connected to --- " + selNode)
+	
+	
+	// for any nodes selected make sure they can be connected
+	for( n in selection.selectedNodes()){
+		var mySelectedNode = selection.selectedNode(n)
+		node.link(mySelectedNode, 0, newCompNode, 0 , true, true )
+		MessageLog.trace("------ connected to --- " + selNode)
+		
+	}
+	
+	
+	
 	
 	// TODO add popup allowing user to choose which type of composite 
 	// OR
