@@ -15,22 +15,22 @@ function getNodeAttributes(){
 		MessageLog.trace("you have no nodes selected, just select one and try again")
 		return
 	}
-	
-	var myNode = selection.selectedNode(0)
-	MessageLog.trace(myNode)
-	
-	
-	// check that only one node has been selected
-	
-	// check if that node has any attributes
-	
-	// if it does have attributes, then go through each attribute and display its name and its value
-	
-	
-	
-
-
-
-
-
+	else{
+		// check that only one node has been selected
+		var myNode = selection.selectedNode(0)
+		MessageLog.trace("selected node = " + myNode)
+		
+		var myNode_attrNames 	= node.getAllAttrNames(myNode)
+		var myNode_attrKeys 	= node.getAllAttrKeywords(myNode)
+		
+		MessageLog.trace("myNode_attrNames = " + myNode_attrNames)
+		
+		MessageLog.trace("myNode_attrKeys = " + myNode_attrKeys)
+		
+		
+		
+		// check if that node has any attributes
+		
+		// if it does have attributes, then go through each attribute and display its name and its value
+	}
 }
