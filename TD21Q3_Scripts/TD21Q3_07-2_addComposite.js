@@ -10,6 +10,7 @@ Note: very minimal validation in this script so there will be many use cases whe
 
 function addComposite(){
 	MessageLog.trace("--- addComposite() called ---")
+
 	scene.beginUndoRedoAccum("addComposite()")
 	
 	// escapes from this process if no nodes are selected
@@ -54,8 +55,20 @@ function addComposite(){
 	var node_y		= min_y + offset
 	var node_z		= 0
 
-
+ 
 	var newCompNode = node.add( parentGroup , nodeName, nodeType , node_x , node_y , node_z )
+
+
+	// set the composite type
+	var compositeType = "compositeBitmap"
+
+	// if Shift is pressed, change composite type to pasthrough
+	if(KeyModifiers.IsShiftPressed()){
+		compositeType = "compositePassthrough"
+	}
+
+	node.setTextAttr(newCompNode, "compositeMode", 1, compositeType);
+
 	MessageLog.trace("--- built : " + newCompNode)
 	
 	
