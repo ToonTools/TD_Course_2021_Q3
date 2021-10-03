@@ -55,19 +55,6 @@ function addWriteNodes_toComposite(){
 		}
 		
 	}
-		
-	
-	
-	
-	
-
-	// define export type
-
-	// define export path
-
-	// define export naming convention
-		
-	
 	
 	MessageLog.trace("addWriteNodes_toComposite : Completed")
 	scene.endUndoRedoAccum()
