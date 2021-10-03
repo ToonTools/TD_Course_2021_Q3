@@ -24,8 +24,6 @@ function addComposite(){
 	var selNode_y		= node.coordY(selNode)
 	
 	
-	
-	
 	// build composite	
 	var parentGroup = "Top"
 	var nodeName 	= selNode_name + "_COMP"
@@ -53,10 +51,15 @@ function addComposite(){
 		else{
 			MessageLog.trace("X X X no connection to : " + selNode)
 		}
-		
 	}
 	
 	scene.endUndoRedoAccum()
+	
+	
+	
+	// TODO make composite in horizonal centre of selection
+	
+	// TODO order input cables in node horizontal order
 	
 	
 	// TODO add popup allowing user to choose which type of composite 
