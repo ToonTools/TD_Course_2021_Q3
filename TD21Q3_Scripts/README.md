@@ -52,5 +52,13 @@ var sortedSelection = userSelection.sort(function(a, b) {
 KeyModifiers [documentaton](https://docs.toonboom.com/help/harmony-20/scripting/script/classKeyModifiers.html)
 
 ``` javascript
-var shiftCheck = KeyModifiers.IsShiftPressed()
+function isShiftPressed(){
+    var check = KeyModifiers.IsShiftPressed()
+    if ( check ){
+        MessageBox.information("Shift is pressed")
+    }
+    else{
+        MessageBox.information(" Shift has NOT been pressed ")
+    }
+}
 ```
