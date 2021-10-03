@@ -50,11 +50,33 @@ function addAndUserDisplays(){
 	var comp_y      = min_y + offset_y
 	var comp_z      = 0
 
+    // create composite and link source nodes to it
     var newCompositeNode = node.add(nodeParent, compName, "COMPOSITE", comp_x, comp_y, comp_z)
     // set composite type to bitmap on creation
     node.setTextAttr(newCompositeNode, "compositeMode", 1, "compositeBitmap");
-
     linkNodes_toNode(userSelection, newCompositeNode)
+
+    // create display, link composite to it
+	var newDisplayName = firstNodeName + "_DIS"
+	var newDisplayPath = firstNodeParent + "/" + newDisplayName
+
+    // --------
+    // --- TODO make number incrementing the same as how harmony does it by default
+    // -------
+
+    while( !checkName_alreadyExists(newDisplayPath)){
+		newDisplayName += "_1"
+		newDisplayPath += "_1"
+	}
+
+	var display_x = comp_x
+	var display_y = comp_y + offset_y
+	var display_z = 0
+
+	var newDisplayNode = node.add(nodeParent, newDisplayName, "DISPLAY", display_x, display_y,display_z )
+
+    // connect display to composite
+    node.link(newCompositeNode, 0, newDisplayNode, 0)
 
 
 	MessageLog.trace("\t -- completed: addAndUseDisplays()")
@@ -76,3 +98,10 @@ function linkNodes_toNode( src_Nodes, dst_Nodes){
 		node.link(src_Nodes_sorted[k], 0 , dst_Nodes , 0, false, true)
 	}
 }
+
+function checkName_alreadyExists(nodeFullPath){
+    if( node.getName(nodeFullPath) !="") {
+        return false
+    }
+    return true
+} 
