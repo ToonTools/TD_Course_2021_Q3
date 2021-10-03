@@ -13,12 +13,44 @@ function addComposite(){
 
 	scene.beginUndoRedoAccum("addComposite()")
 	
+	// ------------------------ initial validation --------------------------
 	// escapes from this process if no nodes are selected
 	if( selection.numberOfNodesSelected() <= 0 ){
 		MessageLog.trace(" no nodes are selected so I will stop")
 		return
 	}
 
+	// -------------------- Key Modifiers ---------------------------------------
+	// set the composite type
+	var compositeType = "compositeBitmap"
+
+	// if Shift is pressed, change composite type to pasthrough
+	if(KeyModifiers.IsShiftPressed()){
+		compositeType = "compositePassthrough"
+	}
+	// if Control is pressed, give us some options for which composite to use
+	else if( KeyModifiers.IsControlPressed()){
+
+		var dialog 			= new Dialog()
+		dialog.title 		= "Choose your composite type"
+		
+		var userInput 		= new ComboBox();
+		userInput.label 	= "Type = "
+		userInput.editable 	= true;
+		userInput.itemList 	= ["compositeBitmap", "compositePassthrough", "compositeVector","compositeVectorToBitmap" ];
+
+		dialog.add(userInput)
+		
+		if( dialog.exec()){
+			compositeType = userInput.currentItem 
+		}	
+		else{
+			MessageLog.trace("user cancelled the operation")
+			return
+		}
+	}
+
+	// ------------------------ selection sorting and data gathering -----------------------------------------
 	// sort the array, so it is in left -> right horizontal order
 	var userSelection = selection.selectedNodes()
 	var sortedSelection = userSelection.sort(function(a, b) {
@@ -55,41 +87,14 @@ function addComposite(){
 	var node_y		= min_y + offset
 	var node_z		= 0
 
- 
+	// ------------------------------- build composite ----------------------------------------------
 	var newCompNode = node.add( parentGroup , nodeName, nodeType , node_x , node_y , node_z )
-
-
-	// set the composite type
-	var compositeType = "compositeBitmap"
-
-	// if Shift is pressed, change composite type to pasthrough
-	if(KeyModifiers.IsShiftPressed()){
-		compositeType = "compositePassthrough"
-	}
-	// if Control is pressed, give us some options for which composite to use
-	else if( KeyModifiers.IsControlPressed()){
-		MessageBox.information("Control was pressed")
-
-		var dialog 			= new Dialog()
-		dialog.title 		= "Choose your composite type"
-		
-		var userInput 		= new ComboBox();
-		userInput.label 	= "Type = "
-		userInput.editable 	= true;
-		userInput.itemList 	= ["compositeBitmap", "compositePassthrough", "compositeVector","compositeVectorToBitmap" ];
-
-		dialog.add(userInput)
-		
-		if( dialog.exec()){
-			compositeType = userInput.currentItem 
-		}	
-	}
 
 	node.setTextAttr(newCompNode, "compositeMode", 1, compositeType);
 
 	MessageLog.trace("--- built : " + newCompNode)
 	
-	
+	// -------------------------------- link composite to selection -------------------------------
 	// link composite node to initial selection
 	// for any nodes selected make sure they can be connected
 	for( n in sortedSelection){
