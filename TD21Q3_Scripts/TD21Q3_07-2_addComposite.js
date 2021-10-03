@@ -66,6 +66,24 @@ function addComposite(){
 	if(KeyModifiers.IsShiftPressed()){
 		compositeType = "compositePassthrough"
 	}
+	// if Control is pressed, give us some options for which composite to use
+	else if( KeyModifiers.IsControlPressed()){
+		MessageBox.information("Control was pressed")
+
+		var dialog 			= new Dialog()
+		dialog.title 		= "Choose your composite type"
+		
+		var userInput 		= new ComboBox();
+		userInput.label 	= "Type = "
+		userInput.editable 	= true;
+		userInput.itemList 	= ["compositeBitmap", "compositePassthrough", "compositeVector","compositeVectorToBitmap" ];
+
+		dialog.add(userInput)
+		
+		if( dialog.exec()){
+			compositeType = userInput.currentItem 
+		}	
+	}
 
 	node.setTextAttr(newCompNode, "compositeMode", 1, compositeType);
 
