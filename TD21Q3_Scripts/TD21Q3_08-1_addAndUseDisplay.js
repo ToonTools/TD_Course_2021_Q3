@@ -54,6 +54,25 @@ function addAndUserDisplays(){
     // set composite type to bitmap on creation
     node.setTextAttr(newCompositeNode, "compositeMode", 1, "compositeBitmap");
 
+    linkNodes_toNode(userSelection, newCompositeNode)
+
+
 	MessageLog.trace("\t -- completed: addAndUseDisplays()")
 	scene.endUndoRedoAccum()
+}
+
+function linkNodes_toNode( src_Nodes, dst_Nodes){
+    // input
+    //      src_nodes = array of nodes
+    //      dst_nodes = single node
+    // node.link all src_nodes to the dst_node
+    // this function will sort the nodes in horizontal L -> R order before connecting them
+
+    var src_Nodes_sorted = src_Nodes.sort(function(a, b) {
+		return parseFloat(node.coordX(a)) - parseFloat(node.coordX(b));
+	});
+
+    for( k in src_Nodes_sorted ){
+		node.link(src_Nodes_sorted[k], 0 , dst_Nodes , 0, false, true)
+	}
 }
