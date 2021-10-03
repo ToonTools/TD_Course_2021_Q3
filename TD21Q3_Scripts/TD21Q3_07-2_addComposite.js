@@ -23,21 +23,35 @@ function addComposite(){
 	var sortedSelection = userSelection.sort(function(a, b) {
 		return parseFloat(node.coordX(a)) - parseFloat(node.coordX(b));
 	});
-	
+
+	// starting values for total_X and minimum_Y
+	var total_x = 0
+	var min_y	= -999
+	// look at the x and y node position of all selected nodes
+	for( n in sortedSelection ){
+		// count the total x value to work out the average later
+		total_x 	+= node.coordX(sortedSelection[n])
+
+		// find the lowest y position 
+		var sel_y = node.coordY(sortedSelection[n])
+		if( sel_y > min_y ){
+			min_y = sel_y
+		}
+	}
+
+	var average_x = total_x/sortedSelection.length
+
 	// use the leftmost item as the name of the comp node
 	var selNode			= sortedSelection[0]
 	var selNode_name 	= node.getName(selNode)
-	var selNode_x		= node.coordX(selNode)
-	var selNode_y		= node.coordY(selNode)
-	
 	
 	// build composite	
 	var parentGroup = "Top"
 	var nodeName 	= selNode_name + "_COMP"
 	var nodeType 	= "COMPOSITE"
 	var offset		= 200
-	var node_x		= selNode_x
-	var node_y		= selNode_y + offset
+	var node_x		= average_x
+	var node_y		= min_y + offset
 	var node_z		= 0
 
 
@@ -59,11 +73,6 @@ function addComposite(){
 	}
 	
 	scene.endUndoRedoAccum()
-	
-	
-	
-	// TODO make composite in horizonal centre of selection
-
 	
 	// TODO add popup allowing user to choose which type of composite 
 	// OR
