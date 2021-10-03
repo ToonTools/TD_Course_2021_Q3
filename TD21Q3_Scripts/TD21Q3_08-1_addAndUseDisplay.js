@@ -77,7 +77,8 @@ function addAndUserDisplays(){
 
     // connect display to composite
     node.link(newCompositeNode, 0, newDisplayNode, 0)
-
+    
+    node.setAsGlobalDisplay(newDisplayNode)
 
 	MessageLog.trace("\t -- completed: addAndUseDisplays()")
 	scene.endUndoRedoAccum()
