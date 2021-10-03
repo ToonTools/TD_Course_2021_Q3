@@ -36,3 +36,13 @@ HarmonyPremium -env Env_01 -job Pose_copier_test -scene PC_01 -user chrisc -batc
 <img alt="C:\Github\ToonTools\TD_Course_2021_Q3\images\image tooltip.JPG" src="C:\Github\ToonTools\TD_Course_2021_Q3\images\image tooltip.JPG" >
 ```
 (can be any web image)
+
+## sorting 
+
+Mozilla [array.prototype.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) documentation
+ 
+``` javascript
+var sortedSelection = userSelection.sort(function(a, b) {
+		return parseFloat(node.coordX(a)) - parseFloat(node.coordX(b));
+	});
+```
