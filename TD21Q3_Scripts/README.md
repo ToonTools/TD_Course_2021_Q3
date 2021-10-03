@@ -46,3 +46,11 @@ var sortedSelection = userSelection.sort(function(a, b) {
 		return parseFloat(node.coordX(a)) - parseFloat(node.coordX(b));
 	});
 ```
+
+## Key Modifiers
+
+KeyModifiers [documentaton](https://docs.toonboom.com/help/harmony-20/scripting/script/classKeyModifiers.html)
+
+``` javascript
+var shiftCheck = KeyModifiers.IsShiftPressed()
+```
