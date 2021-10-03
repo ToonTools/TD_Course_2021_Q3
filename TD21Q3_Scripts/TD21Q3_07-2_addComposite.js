@@ -17,8 +17,15 @@ function addComposite(){
 		MessageLog.trace(" no nodes are selected so I will stop")
 		return
 	}
+
+	// sort the array, so it is in left -> right horizontal order
+	var userSelection = selection.selectedNodes()
+	var sortedSelection = userSelection.sort(function(a, b) {
+		return parseFloat(node.coordX(a)) - parseFloat(node.coordX(b));
+	});
 	
-	var selNode			= selection.selectedNode(0)
+	// use the leftmost item as the name of the comp node
+	var selNode			= sortedSelection[0]
 	var selNode_name 	= node.getName(selNode)
 	var selNode_x		= node.coordX(selNode)
 	var selNode_y		= node.coordY(selNode)
@@ -39,13 +46,11 @@ function addComposite(){
 	
 	
 	// link composite node to initial selection
-	
-	
 	// for any nodes selected make sure they can be connected
-	for( n in selection.selectedNodes()){
-		var mySelectedNode = selection.selectedNode(n)
+	for( n in sortedSelection){
+		var mySelectedNode =sortedSelection[n]
 		var linkOutput = node.link(mySelectedNode, 0, newCompNode, 0 , true, true )
-		if(linkOutput){
+		if(linkOutput){ 
 			MessageLog.trace("----- connected to : " + selNode)
 		}
 		else{
@@ -58,9 +63,7 @@ function addComposite(){
 	
 	
 	// TODO make composite in horizonal centre of selection
-	
-	// TODO order input cables in node horizontal order
-	
+
 	
 	// TODO add popup allowing user to choose which type of composite 
 	// OR
