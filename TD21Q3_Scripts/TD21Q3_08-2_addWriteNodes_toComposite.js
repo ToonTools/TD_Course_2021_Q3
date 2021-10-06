@@ -5,6 +5,11 @@ Output: adds write nodes to upstream nodes of the speciffic composite nodes
 How to use: 
     choose the comp node name you want to add write nodes to and choose a write node export Location
 */
+function consoleWrite(message){
+	MessageLog.trace(message)
+	System.println(message)
+}
+
 
 function addWriteNodes_toComposite(){
 	scene.beginUndoRedoAccum("---");
@@ -23,13 +28,13 @@ function addWriteNodes_toComposite(){
 		var selPath  				= currentNodeView + "/" + choiceCompName[c]
 		var selName 				= node.getName(selPath)
 		if( selName == ""){
-			MessageLog.trace("could not find: " + selPath + " in this scene")
+			consoleWrite("could not find: " + selPath + " in this scene")
 			return false
 		}
 		
 		// for each composite, check all of its input nodes
 		var selPath_numInput = node.numberOfInputPorts(selPath)
-		MessageLog.trace("[" + selPath + "] has [" +selPath_numInput + "] inputs")
+		consoleWrite("[" + selPath + "] has [" +selPath_numInput + "] inputs")
 		for (var i = 0 ; i< selPath_numInput ; i++){
 			var src_node 			= node.srcNode(selPath,i)
 			var src_node_name		= src_node.substring(currentNodeView.length + 1 )
@@ -47,21 +52,25 @@ function addWriteNodes_toComposite(){
 			node.setTextAttr(newWrite,"drawingType",0,"PNG4");
 			var framesExportFolder		= renderFolder_root +  scene_name + "/" + src_node_name + "/"
 			var framesExportName 		= scene_name + "_" + src_node_name + "_"
-			var framesExportFullPath 	= framesExportFolder + "/" + framesExportName
+			var framesExportFullPath 	= framesExportFolder + framesExportName
 			node.setTextAttr(newWrite,"drawingName" ,0,framesExportFullPath);
 			
-			MessageLog.trace(choiceCompName[c] + " --- " + newWrite_name +  " < " + framesExportFullPath + " >")
+			consoleWrite("--+ " + newWrite_name +  " <" + framesExportFullPath + ">")
 			
 		}
-		
 	}
 	
-	MessageLog.trace("addWriteNodes_toComposite : Completed")
+	consoleWrite("addWriteNodes_toComposite : Completed")
 	scene.endUndoRedoAccum()
 }
 
+addWriteNodes_toComposite()
 
+/* 
+example way to run this command on a harmony scene:
+HarmonyPremium -compile "C:\Github\ToonTools\TD_Course_2021_Q3\TD21Q3_Scripts\TD21Q3_08-2_addWriteNodes_toComposite.js" "C:\Users\chris\Documents\ToonBoom_Projects\TD Course 2021 Q3\TD21Q3_Demo_Local\Day_8\Day_8_scripting\Day_8_scripting.xstage"
 
+*/
 
 
 
