@@ -2,12 +2,13 @@
 input: target a single node in a harmony scene
 output: text information of all of that nodes attributes and their values
 
+TB getAttrList documentaiton : https://docs.toonboom.com/help/harmony-20/scripting/script/classnode.html#ad06cab49b313f4fafee05446cb04ef0a
+
 */
 
 function getNodeAttributes(){
 	//MessageLog.trace("getNodeAttributes started")
-	
-	var frame				= 1
+	var fNow				= frame.current()
 	
 	if ( selection.numberOfNodesSelected() > 1 ){
 		MessageLog.trace("you have too many nodes selected, just select one and try again")
@@ -20,54 +21,87 @@ function getNodeAttributes(){
 	else{
 		// check that only one node has been selected
 		var myNode = selection.selectedNode(0)
-		
-		var myNode_attrNames 	= node.getAllAttrNames(myNode)
-		var myNode_attrKeys 	= node.getAllAttrKeywords(myNode)
-		
-		MessageLog.trace("[" + myNode + "] has " + myNode_attrNames.length + " attributes"  )
-		
-		
-		for( n in myNode_attrNames ){
-			var myNode_attr_name 		= myNode_attrNames[n]
-			var myNode_attr_key 		= myNode_attrKeys[n]
-			var myNode_attr_value 	= node.getTextAttr(myNode, frame, myNode_attr_key)
-			var myMessage = ""
-			myMessage += ("\t" + myNode_attr_key + " (" + myNode_attr_name + ")")
+
+		//TB get sub attributes documentaiton : https://docs.toonboom.com/help/harmony-20/scripting/script/classnode.html#ad06cab49b313f4fafee05446cb04ef0a
+		function getAttributes(attribute, attributeList)
+		{
+		  attributeList.push(attribute);
+		  var subAttrList = attribute.getSubAttributes();
+		  for (var j = 0; j < subAttrList.length; ++j)
+		  {
+			if(typeof(subAttrList[j].keyword()) === 'undefined' || subAttrList[j].keyword().length == 0)
+			  continue;
+			getAttributes(subAttrList[j], attributeList);
+		  }
+		}
+		function getFullAttributeList(nodePath)
+		{
+		  var attributeList = [];
+		  var topAttributeList = node.getAttrList(nodePath, 1);
+		  for (var i = 0; i < topAttributeList.length; ++i)
+		  {
+			getAttributes(topAttributeList[i], attributeList);
+		  }
+		  return attributeList;
+		}
+		function addPadding(stringToPad, paddingDepth , paddingCharacter){
 			
+			var paddedString = stringToPad.toString()
 
-			if( myNode_attr_value == ""){
-				var myNode_attr_key_x 		= myNode_attr_key + ".x"
-				var myNode_attr_key_x_value = node.getTextAttr(myNode,frame,myNode_attr_key_x)
-				if(myNode_attr_key_x_value != ""){
-					myMessage += ('\n\t  [' + myNode_attr_key_x + '] = ' + myNode_attr_key_x_value)
-				}
-				var myNode_attr_key_y 		= myNode_attr_key + ".y"
-				var myNode_attr_key_y_value = node.getTextAttr(myNode,frame,myNode_attr_key_y)
-				if(myNode_attr_key_y_value != ""){
-					myMessage += ('\n\t  [' + myNode_attr_key_y + '] = ' + myNode_attr_key_y_value)
-				}
-				var myNode_attr_key_z 		= myNode_attr_key + ".z"
-				var myNode_attr_key_z_value = node.getTextAttr(myNode,frame,myNode_attr_key_z)
-				if(myNode_attr_key_z_value != ""){
-					myMessage += ('\n\t  [' + myNode_attr_key_z + '] = ' + myNode_attr_key_z_value)
-				}
+			// if the input string is already longer or equal to the padding length then just return it 
+			if (paddedString.length >= paddingDepth) {
+				return paddedString
+			}
+			
+			// add the padding to the beginning of the string 
+			for(var i=paddedString.length;i<paddingDepth;i++){
+				paddedString = paddingCharacter + paddedString
+			}
 
+			return paddedString
+		}
+		var myNode_attributeList = getFullAttributeList(myNode)
+
+		MessageLog.trace("[" + myNode + "] has " + myNode_attributeList.length + " attributes & sub attributes"  )
+
+		for( a in myNode_attributeList){
+			var sel_attribute 			= myNode_attributeList[a]
+			var sel_attribute_typeName 	= sel_attribute.typeName()
+			var sel_attribute_value 	= sel_attribute_typeName
+
+			if(sel_attribute.hasSubAttributes()){
+				sel_attribute_value = "\\"
 			}
 			else{
-				myMessage += ("\n\t= " +  myNode_attr_value +"\n" )
+				switch (sel_attribute.typeName()){
+					case "BOOL":
+						sel_attribute_value = sel_attribute.boolValue()
+					case "GENERIC_ENUM":
+						sel_attribute_value = sel_attribute.doubleValue(fNow)
+					case "INT":
+						sel_attribute_value = sel_attribute.intValueAt(fNow)
+					case "DOUBLE":
+						sel_attribute_value = sel_attribute.doubleValueAt(fNow)
+					case "DOUBLEVB":
+						sel_attribute_value = sel_attribute.doubleValueAt(fNow)
+					case "STRING":
+						sel_attribute_value = sel_attribute.textValueAt(fNow)
+					case "QUATERNION_PATH":
+						sel_attribute_value = sel_attribute. pos3dValueAt(fNow) // I dont think this is correct way to grab quarternion as they are 4D
+					case "ALIAS":
+						sel_attribute_value = sel_attribute.textValueAt(fNow)
+					case "PATH_3D":
+						sel_attribute_value = sel_attribute.pos3dValueAt(fNow)
+					case "TIMING":
+						sel_attribute_value = sel_attribute.textValueAt(fNow)
+				}
 			}
 
-			
-			MessageLog.trace(myMessage)
-			
-		}
+			var attrCount 			= parseInt(a) +1		
+			var attrCountPadded 	= addPadding( attrCount , 2 , 0 )
+			var namePadding 		= addPadding(sel_attribute.name() , 25 , "-")
 
-		
-		// check if that node has any attributes
-		
-		// if it does have attributes, then go through each attribute and display its name and its value
+			MessageLog.trace("-" +attrCountPadded + namePadding + "\t" + sel_attribute_value + "\t" + "<" +sel_attribute_typeName+">")
+		}
 	}
 }
-
-
-//TODO add array to got through all possible attribute children values
