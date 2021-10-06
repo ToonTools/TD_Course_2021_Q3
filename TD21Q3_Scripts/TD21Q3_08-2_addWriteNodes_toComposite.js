@@ -68,9 +68,15 @@ addWriteNodes_toComposite()
 
 /* 
 example way to run this command on a harmony scene:
+
 HarmonyPremium -compile "C:\Github\ToonTools\TD_Course_2021_Q3\TD21Q3_Scripts\TD21Q3_08-2_addWriteNodes_toComposite.js" "C:\Users\chris\Documents\ToonBoom_Projects\TD Course 2021 Q3\TD21Q3_Demo_Local\Day_8\Day_8_scripting\Day_8_scripting.xstage"
 
+and as a preRenderScript
+
+HarmonyPremium -batch -preRenderScript "C:\Github\ToonTools\TD_Course_2021_Q3\TD21Q3_Scripts\TD21Q3_08-2_addWriteNodes_toComposite.js" "C:\Users\chris\Documents\ToonBoom_Projects\TD Course 2021 Q3\TD21Q3_Demo_Local\Day_8\Day_8_scripting\Day_8_scripting.xstage"
+
 */
+
 
 
 
