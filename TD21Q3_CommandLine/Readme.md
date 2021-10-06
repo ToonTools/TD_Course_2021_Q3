@@ -64,6 +64,17 @@ HarmonyPremium -compile <script full path> <.xstage file full path>
 ```javascript
 HarmonyPremium -compile "SCRIPT_DIRECTORY\SCRIPT_NAME" "FILE_DIRECTORY\FILE_XSTAGE_NAME"
 ```  
+### Harmony Standlone preRenderScript on 1 file:
+
+```javascript
+HarmonyPremium -batch -preRenderScript "SCRIPT_DIRECTORY\SCRIPT_NAME" "FILE_DIRECTORY\FILE_XSTAGE_NAME"
+```
+
+```javascript
+HarmonyPremium -batch -preRenderScript "C:\Github\ToonTools\TD_Course_2021_Q3\TD21Q3_Scripts\TD21Q3_08-2_addWriteNodes_toComposite.js" "C:\Users\chris\Documents\ToonBoom_Projects\TD Course 2021 Q3\TD21Q3_Demo_Local\Day_8\Day_8_scripting\Day_8_scripting.xstage"
+```
+
+
 
 ### Control Center execute on 1 file:
 ```javascript
