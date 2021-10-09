@@ -7,7 +7,7 @@ How to use:
 */
 function consoleWrite(message){
 	MessageLog.trace(message)
-	System.println(message)
+	//System.println(message)
 }
 
 
