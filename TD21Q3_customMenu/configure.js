@@ -27,13 +27,14 @@ function configure(){
                                 action      : "hello in helloWorld.js"
                             })
 }
+function init(){
+    MessageLog.trace("initialising TD21Q3_customMenu/configure.js...")
+}
 
 function myCustomFunction(){
     MessageBox.information("This is my custom action!")
 
 }
 
-
-
 exports.configure   = configure;
-//exports.init        = init;
+exports.init        = init;
