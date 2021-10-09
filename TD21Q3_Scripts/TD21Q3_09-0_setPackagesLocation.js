@@ -5,8 +5,8 @@ function setPackages(){
     MessageLog.trace(" --- " + setPackages.name + " started ---" )
 
     var preferenceToSet = "TB_EXTERNAL_SCRIPT_PACKAGES_FOLDER"
-    var valueToSet      = "C:\Github\ToonTools\TD_Course_2021_Q3\TD21Q3_Scripts"	
-	valueToSet.replace("\\","//")
+    var valueToSet      = "C:/Github/ToonTools/TD_Course_2021_Q3/TD21Q3_packages_TEST"	
+	//valueToSet.replace('\\','\/')
     
     MessageLog.trace("about to set : '" + preferenceToSet + "' to '" + valueToSet + "'")
 
