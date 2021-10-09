@@ -28,7 +28,9 @@ function configure(){
                             })
 }
 function init(){
-    MessageLog.trace("initialising TD21Q3_customMenu/configure.js...")
+    // this does not seem to be exectuting message prompts, not a priority to slove now tho
+    //MessageLog.trace("initialising TD21Q3_customMenu/configure.js...MessageLog.trace")
+    //System.println("initialising TD21Q3_customMenu/configure.js...System.println")
 }
 
 function myCustomFunction(){
