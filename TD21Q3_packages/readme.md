@@ -18,3 +18,19 @@ and modifying or creating a path as the value for:
 <string value="PACKAGE_PATH" id="TB_EXTERNAL_SCRIPT_PACKAGES_FOLDER"/>
 ```
 Linked is a script which can be run to set this prefrence [setPackagesLocation.js](../TD21Q3_Scripts/TD21Q3_09-0_setPackagesLocation.js)
+
+# Custom Menu
+
+## Creating Menu in the Menus.xml
+You can add a menu item here : `C:\Program Files (x86)\Toon Boom Animation\Toon Boom Harmony 20 Premium\resources\menus.xml`
+
+A package item such as [customMenu/configure](TD21Q3_customMenu/configure.js) can be configured to add content to that menu
+
+## Creating Menu using script
+``` javascript
+function addMenu(){
+	var myMenuBar 	= QApplication.activeWindow().menuBar()
+	var myMenu 		= myMenuBar.addMenu("my shiny new menu")
+	MessageLog.trace("we should now have a new menu")
+}
+```
