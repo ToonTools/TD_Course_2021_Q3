@@ -5,7 +5,12 @@ function setPackages(){
     MessageLog.trace(" --- " + setPackages.name + " started ---" )
 
     var preferenceToSet = "TB_EXTERNAL_SCRIPT_PACKAGES_FOLDER"
-    var valueToSet      = "C:/Github/ToonTools/TD_Course_2021_Q3/TD21Q3_packages_TEST"	
+    var valueToSet      = "C:/Github/ToonTools/TD_Course_2021_Q3/TD21Q3_packages"	
+
+	/* The file being modified live here:
+	C:\Users\chris\AppData\Roaming\Toon Boom Animation\Toon Boom Harmony Premium\full-2000-pref\Harmony Premium-pref.xml
+	*/
+
 	//valueToSet.replace('\\','\/')
     
     MessageLog.trace("about to set : '" + preferenceToSet + "' to '" + valueToSet + "'")

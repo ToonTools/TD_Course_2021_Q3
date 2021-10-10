@@ -1,15 +1,4 @@
-function addMenu(){
-	var myMenuBar 	= QApplication.activeWindow().menuBar()
-	var myMenu 		= myMenuBar.addMenu("my shiny new menu")
-	MessageLog.trace("we should now have a new menu")
-}
 
-how to do update shortcuts using similar process
+ <string value="C:\Github\ToonTools\TD_Course_2021_Q3\TD21Q3_packages" id="TB_EXTERNAL_SCRIPT_PACKAGES_FOLDER"/>
 
-where is the harmony on startup location? ( to build menus this way )
-
-
-
-packages location C:\Program Files (x86)\Toon Boom Animation\Toon Boom Harmony 20 Premium\Plugins\ScriptingInterfaces\resources\packages
-
-
+ ( get it workingwith the tool) ( updates it 1 time on Kims machine but not again? )
