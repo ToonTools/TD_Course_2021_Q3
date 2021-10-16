@@ -10,3 +10,6 @@ include("C:/Github/ToonTools/TD_Course_2021_Q3/TD21Q3_scriptedMasterController/m
 
 include("C:/Github/ToonTools/TD_Course_2021_Q3/TD21Q3_scriptedMasterController/myScript.js")
 
+
+
+// depends on wether you want the script to move with the .tpl or if you want a globally accessable script
