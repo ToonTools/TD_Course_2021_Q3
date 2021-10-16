@@ -4,5 +4,6 @@
     <out type="IMAGE"/>
   </ports>
   <attributes>
+    <attr type="BOOL" name="checkbox_vale" value="false" tooltip="checkbox On/Off value"/>
   </attributes>
 </specs>
