@@ -1,12 +1,17 @@
 function onPoint2dValueChanged(params, point2dVal)
 {
+    MessageLog.trace("START")
   var targetAttr = params.targetAttrs[0];
+    MessageLog.trace("Attribute Name: " + targetAttr)
   for(var i=0; i<params.targetNodes.length; ++i)
   {
     var targetNode = params.targetNodes[i];
-    node.setTextAttr(targetNode, targetAttr + ".X", frame.current(), point2dVal.x );
-    node.setTextAttr(targetNode, targetAttr + ".Y", frame.current(), point2dVal.y );
+    MessageLog.trace("------------------")
+    MessageLog.trace("Node INdex : " + i)
+    Messagelog.trace("Node Identifier: " + targetNode)
+
   }
+    MessageLog.trace("END")
 }
 
 
