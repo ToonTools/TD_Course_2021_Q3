@@ -15,7 +15,9 @@ function onPoint2dValueChanged(params, point2dVal)
             var delta_y     = point2dVal.y - pos_y
             var angle       = Math.atan2(delta_y, delta_x) *180 / Math.PI;
 
-            MessageLog.trace("Node : " + i + " Name : " + targetNode + " X:" + pos_x + "Y:" + pos_y + " Angle:" + angle)
+            //MessageLog.trace("Node : " + i + " Name : " + targetNode + " X:" + pos_x + "Y:" + pos_y + " Angle:" + angle)
+
+            node.setTextAttr( targetNode, "ROTATION.ANGLEZ", frame.current(), angle)
     
         }
         MessageLog.trace("END")
