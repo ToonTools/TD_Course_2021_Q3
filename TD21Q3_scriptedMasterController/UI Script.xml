@@ -1,0 +1,9 @@
+//include(scene.currentProjectPath() + "/scripts/myScript.js");
+
+// this points to a folder within the current .tpl's scene files
+
+// for this example we will have a seperate script file in a github readable location
+
+include("C:/Github/ToonTools/TD_Course_2021_Q3/TD21Q3_scriptedMasterController/mc_revealAllDeformers.js")
+
+
