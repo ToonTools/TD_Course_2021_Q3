@@ -2,15 +2,15 @@
 //( not intended for master controllers)
 
 
-function setBlink(myBlink_node, blinkStartFrame){
+function setBlink(myBlink_node){
+	
+	var blinkStartFrame = 8 
 	
 	try{
-		MessageLog.trace("blink helper started looking at Node : " + myBlink_node + " will start blink at frame: " + blinkStartFrame )
 		// assume correct node is selected
 		
 		var myBlink_drawingColumn = node.linkedColumn(myBlink_node, "DRAWING.ELEMENT")
-		MessageLog.trace("Column = " + myBlink_drawingColumn)
-		MessageLog.trace("Column name  = " + column.getDisplayName(myBlink_drawingColumn))
+		MessageLog.trace("blinking " + column.getDisplayName(myBlink_drawingColumn) + " at frame: " + blinkStartFrame )
 
 		// what are the names of the different drawing substitutions
 		var b_0 = "OFF"
@@ -65,19 +65,16 @@ function findEyelidNode(characterRig_Group){
 		var myEye_start = myPrefix + "_Eye"
 		
 		// go through subnodes, if they are a GROUP & if they start with myEye_start then assume they are containing eyelids
-		MessageLog.trace("looking throught the subnodes ")
 		for( var n = 0 ; n < myHead_subNodes.length ; n++){
 			var mySubNode = myHead_subNodes[n]
 			if (node.type(mySubNode) == "GROUP"){
 				if( mySubNode.indexOf(myEye_start)> 0 ){
 					// go inside the eyelid : keep PNK prexif add _Eyelid_Upper
 					var myExpectedEyelidNode = mySubNode + "/" + myPrefix + "_Eyelid_Upper"
-					MessageLog.trace("myExpectedEyelidNode = " + myExpectedEyelidNode )
+					setBlink(myExpectedEyelidNode)
 				}	
 			}
 		}
-	
-		
 		
 		var blinkNode 			= selection.selectedNode(0)
 		var blinkStartFrame 	= 8
@@ -90,17 +87,25 @@ function findEyelidNode(characterRig_Group){
 }
 
 function findRigGroup(){
+	
+	scene.beginUndoRedoAccum("---");
 	// find the rig group of the current selection
+	// assume current selection is within a group
+	// this tool will go up the network until it find what it thinks is a character rig that this node is contained in
 	try{
-	
-		var rigGroup = "Top/PNK_Punk"
+		var mySelection = selection.selectedNode(0)
+		MessageLog.trace("mySelection = " + mySelection )
 		
+		var numberOfSlashes = mySelection.split("/").length
+		while ( numberOfSlashes > 2 ){
+			mySelection 	=  node.parentNode( mySelection)
+			numberOfSlashes = mySelection.split("/").length
+		}
 		
-		findEyelidNode(rigGroup)
-	
+		findEyelidNode(mySelection)
 	
 	}catch(error){
 		MessageLog.trace("ERROR: findRigGroup() : " + error)
 	}
-	
+	scene.endUndoRedoAccum()
 }
