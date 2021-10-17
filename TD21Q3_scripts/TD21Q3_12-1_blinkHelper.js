@@ -69,20 +69,14 @@ function findEyelidNode(characterRig_Group){
 		for( var n = 0 ; n < myHead_subNodes.length ; n++){
 			var mySubNode = myHead_subNodes[n]
 			if (node.type(mySubNode) == "GROUP"){
-				MessageLog.trace( n  + "   " + mySubNode)
 				if( mySubNode.indexOf(myEye_start)> 0 ){
-						MessageLog.trace("TRUE \t\t "+  mySubNode)
+					// go inside the eyelid : keep PNK prexif add _Eyelid_Upper
+					var myExpectedEyelidNode = mySubNode + "/" + myPrefix + "_Eyelid_Upper"
+					MessageLog.trace("myExpectedEyelidNode = " + myExpectedEyelidNode )
 				}	
 			}
 		}
-		
-		MessageLog.trace("myEye_start = " + myEye_start) 
-		
-		
-		
-		
-		// go inside the eyelid : keep PNK prexif add _Eyelid_Upper
-		
+	
 		
 		
 		var blinkNode 			= selection.selectedNode(0)
