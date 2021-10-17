@@ -42,16 +42,38 @@ function setBlink(myBlink_node, blinkStartFrame){
 	}
 }
 
-
-
-
-
 function findEyelidNode(characterRig_Group){
 	// characterRig_Group is the top level of the group containing an entire characterRig_Group
 	// this character will have an eyelid in it which we will find
 	try{
 	
 		MessageLog.trace("I am going to find the eyelid node inside of :" + characterRig_Group )
+		
+		// our answer is: /PNK_Head/PNK_Eye_Clone/PNK_Eyelid_Upper
+		var myGroup_parentNode = node.parentNode(characterRig_Group)
+		var myGroupName_minusPath = characterRig_Group.substring(myGroup_parentNode.length + 1  )//Top/PNK_Punk -> PNK_Punk
+		
+		// we are assuming character prefixes are ALWAYS 3 characters long
+		var myPrefix = myGroupName_minusPath.substring(0,3)
+
+		// go inside head :  keep PNK prefix, but after that add "_Head"
+		var myHead 			= myPrefix + "_Head"
+		var myHead_path 	= myGroup_parentNode +"/"myHead
+		var myHead_subNodes = node.subNode(myHead_path)
+		
+		MessageLog.trace("myHead_subNodes = " + myHead_subNodes)
+		
+		
+		// go inside any eye : keep PNK prefix, add _Eye_ look for anything that matches ( we expect 2 hits )
+		var myEye_start = myPrefix + "_Eye"
+		
+		MessageLog.trace("myEye_start = " + myEye_start) 
+		
+		
+		
+		
+		// go inside the eyelid : keep PNK prexif add _Eyelid_Upper
+		
 		
 		
 		var blinkNode 			= selection.selectedNode(0)
