@@ -44,14 +44,38 @@ function setBlink(myBlink_node, blinkStartFrame){
 
 
 
+
+
 function findEyelidNode(characterRig_Group){
 	// characterRig_Group is the top level of the group containing an entire characterRig_Group
 	// this character will have an eyelid in it which we will find
+	try{
+	
+		MessageLog.trace("I am going to find the eyelid node inside of :" + characterRig_Group )
+		
+		
+		var blinkNode 			= selection.selectedNode(0)
+		var blinkStartFrame 	= 8
+		setBlink(blinkNode, blinkStartFrame)
+		
+	}catch(error){
+		MessageLog.trace("ERROR: findEyelidNode() : " + error)
+	}
+	
+}
+
+function findRigGroup(){
+	// find the rig group of the current selection
+	try{
+	
+		var rigGroup = "Top/PNK_Punk"
+		
+		
+		findEyelidNode(rigGroup)
 	
 	
-	var blinkNode 			= selection.selectedNode(0)
-	var blinkStartFrame 	= 8
-	setBlink(blinkNode, blinkStartFrame)
-	
+	}catch(error){
+		MessageLog.trace("ERROR: findRigGroup() : " + error)
+	}
 	
 }
