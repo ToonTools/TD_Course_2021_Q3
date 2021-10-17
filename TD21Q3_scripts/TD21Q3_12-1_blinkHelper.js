@@ -58,8 +58,11 @@ function findEyelidNode(characterRig_Group){
 
 		// go inside head :  keep PNK prefix, but after that add "_Head"
 		var myHead 			= myPrefix + "_Head"
-		var myHead_path 	= myGroup_parentNode +"/"myHead
-		var myHead_subNodes = node.subNode(myHead_path)
+		var myHead_path 	= characterRig_Group +"/" + myHead
+		
+		MessageLog.trace("myHead_path = " + myHead_path )
+		
+		var myHead_subNodes = node.subNodes(myHead_path)
 		
 		MessageLog.trace("myHead_subNodes = " + myHead_subNodes)
 		
