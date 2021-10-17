@@ -59,16 +59,22 @@ function findEyelidNode(characterRig_Group){
 		// go inside head :  keep PNK prefix, but after that add "_Head"
 		var myHead 			= myPrefix + "_Head"
 		var myHead_path 	= characterRig_Group +"/" + myHead
-		
-		MessageLog.trace("myHead_path = " + myHead_path )
-		
 		var myHead_subNodes = node.subNodes(myHead_path)
-		
-		MessageLog.trace("myHead_subNodes = " + myHead_subNodes)
-		
 		
 		// go inside any eye : keep PNK prefix, add _Eye_ look for anything that matches ( we expect 2 hits )
 		var myEye_start = myPrefix + "_Eye"
+		
+		// go through subnodes, if they are a GROUP & if they start with myEye_start then assume they are containing eyelids
+		MessageLog.trace("looking throught the subnodes ")
+		for( var n = 0 ; n < myHead_subNodes.length ; n++){
+			var mySubNode = myHead_subNodes[n]
+			if (node.type(mySubNode) == "GROUP"){
+				MessageLog.trace( n  + "   " + mySubNode)
+				if( mySubNode.indexOf(myEye_start)> 0 ){
+						MessageLog.trace("TRUE \t\t "+  mySubNode)
+				}	
+			}
+		}
 		
 		MessageLog.trace("myEye_start = " + myEye_start) 
 		
