@@ -7,15 +7,13 @@ function configure()
 }
 
 function addShortcut(){
-    msg_funcName		= 	"addShortcut"
+    msg_funcName		= 	"TD21Q3_addShortcut"
     msg_start 		= 	" --- Started : " + msg_funcName + "  --- " 
     msg_end  			= 	" --- Finished : " + msg_funcName + "  --- " 
   
     MessageLog.trace(msg_start)
   
-    MessageLog.trace( JSON.stringify(ScriptManager,null,2) )
-  
-  
+    //MessageLog.trace( JSON.stringify(ScriptManager,null,2) )
     
     ScriptManager.addShortcut( { 	text     		: "get node attributes",
                     id       		: "getNodeAttributes",
