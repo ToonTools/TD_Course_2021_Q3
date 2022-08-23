@@ -1,3 +1,15 @@
+
+<div style="text-align:center">
+
+![GitHub](https://img.shields.io/github/license/ToonTools/TD_Course_2021_Q3)
+![GitHub contributors](https://img.shields.io/github/contributors/ToonTools/TD_Course_2021_Q3)
+![GitHub repo size](https://img.shields.io/github/repo-size/ToonTools/TD_Course_2021_Q3)
+![GitHub top language](https://img.shields.io/github/languages/top/ToonTools/TD_Course_2021_Q3)
+![GitHub last commit](https://img.shields.io/github/last-commit/ToonTools/TD_Course_2021_Q3)
+
+</div>
+
+
 # Toon Boom Technical Director 2021 Q3  <sup>( TD21Q3 )</sup>
 ##### 9am-12pm PST (Pacific Standard Time) Saturdays & Sundays
 ##### September 11th 2021 -> October 17th 2021
