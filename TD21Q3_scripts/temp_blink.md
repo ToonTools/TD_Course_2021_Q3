@@ -22,3 +22,15 @@ How to get drawinng names from a node?
 * node.linkedColumn (String node, String attrName) // use "drawings" as the name probably
 // get drawings from column
 * column.getDrawingName(String columnName, int frame)
+
+
+
+## Steps
+
+1. PNK_Eyelid_Upper
+2. drawings [Down_1 , Down_2, Down_3]
+3. create a script that can set that timing
+
+
+
+
